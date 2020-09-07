@@ -8,7 +8,7 @@ struct A {
 };
 
 template <typename, typename = void> struct has_foo_function : std::false_type {};
-template <typename T> struct has_foo_function<T, std::void_t< decltype(T().foo()) >> : std::true_type {};
+template <typename T> struct has_foo_function<T, std::void_t< decltype(std::declval<T>().foo()) >> : std::true_type {};
 
 template <typename, typename = void> struct has_field : std::false_type {};
 template <typename T> struct has_field<T, std::void_t< decltype(T::field) > >: std::true_type {};
